@@ -59,28 +59,28 @@ router.post("/add",upload.single("image"),  async function (req, res, next) {
     ) {
       throw new Error("Data Did Not Match!");
     }
-    req.body.image = req.file.filename;
-    req.body.password = await bcrypt.hash(req.body.password, 8);
-    const datas = await USER.create(req.body);
-    // console.log(datas);
-    main(datas.email);
-    res.status(201).json({
-      status: "Data Successfully added!",
-      message: "Success",
-      data: datas,
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "No Data Found",
-      message: error.message,
-    });
-  }
-});
+      req.body.image = req.file.filename;
+      req.body.password = await bcrypt.hash(req.body.password, 8);
+      const datas = await USER.create(req.body);
+      // console.log(datas);
+      main(datas.email);
+      res.status(201).json({
+        status: "Data Successfully added!",
+        message: "Success",
+        data: datas,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: "No Data Found",
+        message: error.message,
+      });
+    }
+  });
 
-//Login
-router.post("/login", async function (req, res, next) {
-  try {
-    const datas = await USER.findOne({ email: req.body.email });
+  //Login
+  router.post("/login", async function (req, res, next) {
+    try {
+      const datas = await USER.findOne({ email: req.body.email });
     if (!datas) {
       throw new Error("enter valid email id");
     }

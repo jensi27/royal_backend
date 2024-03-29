@@ -94,9 +94,9 @@ router.post('/login', async function (req, res, next) {
 //Update
 router.put('/update/:id', async function (req, res, next) {
     try {
-        if (!req.body.name || !req.body.mno || !req.body.email || !req.body.password) {
-            throw new Error("Data Did Not Match!")
-        }
+        // if (!req.body.name || !req.body.mno || !req.body.email || !req.body.password) {
+        //     throw new Error("Data Did Not Match!")
+        // }
         req.body.password = await bcrypt.hash(req.body.password, 8);
         id = req.params.id
         u_data = req.body
@@ -137,5 +137,33 @@ router.delete('/delete/:id', async function (req, res, next) {
         })
     }
 });
+
+//Forget Password
+router.post("/forgetpass", async function (req, res, next) {
+    try {
+      // if (!req.body.email || !req.body.mno) {
+      //   throw new Error("Data didn't match!!");
+      // }
+      const datas = await SIGNIN.findOne({ email: req.body.email });
+      // const contactno = datas.mno;
+      if (!datas) {
+        throw new Error("Email is not valid!!");
+      }
+      if(datas.mno!==req.body.mno){
+        throw new Error("Contact no is not valid!!");
+      }
+  
+      res.status(200).json({
+        status: "Data Successfully find!",
+        message: "Success",
+        data: datas,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: "No Data Found",
+        message: error.message,
+      });
+    }
+  });
 
 module.exports = router;
