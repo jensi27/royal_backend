@@ -24,7 +24,7 @@ router.post('/add', upload.single("image"), async function (req, res, next) {
         }
         req.body.image = req.file.filename;
         const datas = await VIEWROOM.create(req.body);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully added!",
             message: "Success",
@@ -41,7 +41,7 @@ router.post('/add', upload.single("image"), async function (req, res, next) {
 //Find
 router.get('/view', async function (req, res, next) {
     const datas = await VIEWROOM.find().populate('room_ref');
-    console.log(datas);
+    // console.log(datas);
     try {
         res.status(200).json({
             status: "Data Successfully view!",
@@ -66,7 +66,7 @@ router.put('/update/:id', upload.single("image"), async function (req, res, next
         id = req.params.id
         u_data = req.body
         const datas = await VIEWROOM.findByIdAndUpdate(id, u_data);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully updated!",
             message: "Success",
@@ -85,7 +85,7 @@ router.get('/show/:id', upload.single("image"), async function (req, res, next) 
     try {
         id = req.params.id
         const datas = await VIEWROOM.findById(id);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully Find!",
             message: "Success",
@@ -104,7 +104,7 @@ router.delete('/delete/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await VIEWROOM.findByIdAndDelete(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.file || !req.body.name || !req.body.bed || !req.body.bath || !req.body.price || !req.body.description) {
             throw new Error("Data Did Not Match!")

@@ -12,7 +12,7 @@ router.post('/add', async function (req, res, next) {
         }
         // req.body.token = jwt.sign({ foo: 'bar' }, 'shhhhh')
         const datas = await BOOKING.create(req.body);
-        console.log(datas);
+        // console.log(datas);
 
         res.status(201).json({
             status: "Data Successfully added!",
@@ -30,7 +30,7 @@ router.post('/add', async function (req, res, next) {
 //Find
 router.get('/view', async function (req, res, next) {
     const datas = await BOOKING.find();
-    console.log(datas);
+    // console.log(datas);
     // var decoded = jwt.verify(req.body.token, 'shhhhh')
     try {
         res.status(200).json({
@@ -52,7 +52,7 @@ router.put('/update/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await BOOKING.findByIdAndUpdate(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.name || !req.body.email || !req.body.checkin || !req.body.checkout || !req.body.adultno || !req.body.childno || !req.body.room || !req.body.message) {
             throw new Error("Data Did Not Match!")
@@ -74,7 +74,7 @@ router.put('/update/:id', async function (req, res, next) {
 router.get('/show/:id', async function (req, res, next) {
     id = req.params.id
     const datas = await BOOKING.findById(id);
-    console.log(datas);
+    // console.log(datas);
     try {
         res.status(201).json({
             status: "Data Successfully Find!",
@@ -94,7 +94,7 @@ router.delete('/delete/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await BOOKING.findByIdAndDelete(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.name || !req.body.email || !req.body.checkin || !req.body.checkout || !req.body.adultno || !req.body.childno || !req.body.room || !req.body.message) {
             throw new Error("Data Did Not Match!")

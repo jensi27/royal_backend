@@ -26,7 +26,7 @@ router.post('/add', upload.single("image"), async function (req, res, next) {
         // req.body.token = jwt.sign({foo : 'bar'}, 'shhhhh')
         req.body.image = req.file.filename;
         const datas = await CHEF.create(req.body);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully added!",
             message: "Success",
@@ -44,7 +44,7 @@ router.post('/add', upload.single("image"), async function (req, res, next) {
 router.get('/view', async function (req, res, next) {
     const datas = await CHEF.find();
     // var decoded = jwt.verify(req.body.token, 'shhhhh')
-    console.log(datas);
+    // console.log(datas);
     try {
         res.status(200).json({
             status: "Data Successfully view!",
@@ -69,7 +69,7 @@ router.put('/update/:id', upload.single("image"), async function (req, res, next
         id = req.params.id
         u_data = req.body
         const datas = await CHEF.findByIdAndUpdate(id, u_data);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully updated!",
             message: "Success",
@@ -88,7 +88,7 @@ router.get('/show/:id', upload.single("image"), async function (req, res, next) 
     try {
         id = req.params.id
         const datas = await CHEF.findById(id);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully Find!",
             message: "Success",
@@ -107,7 +107,7 @@ router.delete('/delete/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await CHEF.findByIdAndDelete(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.image || !req.body.name || !req.body.profession) {
             throw new Error("Data Did Not Match!")

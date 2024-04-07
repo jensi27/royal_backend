@@ -101,7 +101,7 @@ router.put('/update/:id', async function (req, res, next) {
         id = req.params.id
         u_data = req.body
         const datas = await SIGNIN.findByIdAndUpdate(id, u_data);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status: "Data Successfully updated!",
             message: "Success",
@@ -120,7 +120,7 @@ router.delete('/delete/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await SIGNIN.findByIdAndDelete(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.name || !req.body.mno || !req.body.email || !req.body.password) {
             throw new Error("Data Did Not Match!")

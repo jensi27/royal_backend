@@ -25,7 +25,7 @@ router.post('/add',upload.single("image"), async function(req, res, next) {
         }
         req.body.image = req.file.filename;
         const datas = await MENU.create(req.body);
-        console.log(datas);
+        // console.log(datas);
 
         res.status(201).json({
             status : "Data Successfully added!",
@@ -43,7 +43,7 @@ router.post('/add',upload.single("image"), async function(req, res, next) {
 //Find
 router.get('/view',async function(req,res,next){
     const datas=await MENU.find();
-    console.log(datas);
+    // console.log(datas);
     try{
         res.status(200).json({
             status : "Data Successfully view!",
@@ -68,7 +68,7 @@ router.put('/update/:id',upload.single("image"), async function(req, res, next) 
         id=req.params.id
         u_data=req.body
         const datas = await MENU.findByIdAndUpdate(id,u_data);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status : "Data Successfully updated!",
             message : "Success",
@@ -86,7 +86,7 @@ router.put('/update/:id',upload.single("image"), async function(req, res, next) 
 router.get('/show/:id',upload.single("image"), async function(req, res, next) {
     id=req.params.id
     const datas = await MENU.findById(id);
-    console.log(datas);
+    // console.log(datas);
     try{
         res.status(201).json({
             status : "Data Successfully Find!",
@@ -106,7 +106,7 @@ router.delete('/delete/:id', async function(req, res, next) {
     id=req.params.id
     u_data=req.body
     const datas = await MENU.findByIdAndDelete(id,u_data);
-    console.log(datas);
+    // console.log(datas);
     try{
         if(!req.file || !req.body.name || !req.body.description || !req.body.price){
             throw new Error("Data Did Not Match!")

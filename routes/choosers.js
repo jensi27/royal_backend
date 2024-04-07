@@ -10,7 +10,7 @@ router.post('/add', function(req, res, next) {
             throw new Error("Data Did not match")
         }
         const datas = CHOOSERS.create(req.body);
-        console.log(datas);
+        // console.log(datas);
         res.status(201).json({
             status : "Success",
             message : "Data Successfully added !!!",
@@ -28,7 +28,7 @@ router.post('/add', function(req, res, next) {
 //Find 
 router.get('/view', async function (req, res, next) {
     const datas = await CHOOSERS.find();
-    console.log(datas);
+    // console.log(datas);
     try {
         res.status(201).json({
             status: "Data Successfully view!",
@@ -48,7 +48,7 @@ router.put('/update/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await CHOOSERS.findByIdAndUpdate(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.no || !req.body.title || !req.body.description) {
             throw new Error("Data Did Not Match!")
@@ -70,7 +70,7 @@ router.put('/update/:id', async function (req, res, next) {
 router.get('/show/:id', async function (req, res, next) {
     id = req.params.id
     const datas = await CHOOSERS.findById(id);
-    console.log(datas);
+    // console.log(datas);
     try {
         res.status(201).json({
             status: "Data Successfully Find!",
@@ -90,7 +90,7 @@ router.delete('/delete/:id', async function (req, res, next) {
     id = req.params.id
     u_data = req.body
     const datas = await CHOOSERS.findByIdAndDelete(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     try {
         if (!req.body.no || !req.body.title || !req.body.description) {
             throw new Error("Data Did Not Match!")

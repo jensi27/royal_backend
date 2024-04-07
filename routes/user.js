@@ -156,7 +156,7 @@ router.put("/update/:id",upload.single("image"), async function (req, res, next)
     id = req.params.id;
     u_data = req.body;
     const datas = await USER.findByIdAndUpdate(id, u_data);
-    console.log(datas);
+    // console.log(datas);
     res.status(201).json({
       status: "Data Successfully updated!",
       message: "Success",
@@ -175,7 +175,7 @@ router.delete("/delete/:id", async function (req, res, next) {
   id = req.params.id;
   u_data = req.body;
   const datas = await USER.findByIdAndDelete(id, u_data);
-  console.log(datas);
+  // console.log(datas);
   try {
     if (
       !req.body.name ||
